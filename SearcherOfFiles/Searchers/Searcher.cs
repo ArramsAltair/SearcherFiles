@@ -16,20 +16,16 @@ namespace SearcherOfFiles.Searchers
 
         public string FileName { get; set; }
 
-        public string DefaultPath { get; set; }
-
-        
-
         public Searcher(string defaultPath)
         {
-            this.DefaultPath = defaultPath;
+            this.Path = defaultPath;
         }
 
         public string[] Search() 
         {       
             if (Path == null || Path == "")
             {
-                return Directory.GetFiles(DefaultPath);
+                return null;
             }
             try 
             {

@@ -30,6 +30,10 @@ namespace SearcherOfFiles.Helpers
 
         public static List<Element> Deserialize(string file)
         {
+            if(file == null) 
+            {
+                return null;
+            }
             XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<Element>));
             List<Element> list;
             using (StreamReader sr = new StreamReader(file))

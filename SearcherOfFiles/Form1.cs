@@ -1,3 +1,4 @@
+using SearcherOfFiles.Helpers;
 using SearcherOfFiles.Managers;
 using System.Diagnostics;
 
@@ -18,9 +19,7 @@ namespace SearcherOfFiles
             {
                 return;
             }
-            searchManager.SetPuth(tBPath.Text);
-            searchManager.SetFindFileName(tBFileName.Text);
-            searchManager.Start();
+            searchManager.Start(tBPath.Text, tBFileName.Text);
             string[] files = searchManager.GetFiles();
             lBResult.Items.Clear();
             if (files != null && files.Length > 0)
@@ -74,6 +73,18 @@ namespace SearcherOfFiles
         private void btnStop_Click(object sender, EventArgs e)
         {
             searchManager.Stop();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            searchManager.LoadParameters();
+            tBPath.Text = searchManager.DefaultPath;
+            tBFileName.Text = searchManager.FileName;
+        }
+
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            searchManager.SaveParameters();
         }
     }
 }

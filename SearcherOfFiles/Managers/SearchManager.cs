@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 using Microsoft.VisualBasic.Logging;
+using SearcherOfFiles.Helpers;
 using SearcherOfFiles.Interfaces;
 using SearcherOfFiles.Searchers;
 
@@ -17,11 +19,15 @@ namespace SearcherOfFiles.Managers
 
         private string[] files;
 
-        private string defaultPath = "C:";
+        public string DefaultPath { get; private set;}
+
+        public string FileName { get; private set;}
+
+        private const string configFile = "def.xml";
 
         public SearchManager() 
         {
-            searcher = new Searcher(defaultPath);
+            searcher = new Searcher(DefaultPath);
         }
 
         public string[] GetFiles() 
@@ -31,25 +37,19 @@ namespace SearcherOfFiles.Managers
 
         public void Start() 
         {
+            
+        }
+
+        public void Start(string path, string fileName) 
+        {
             if (searcher == null) 
             {
                 return;
             }
-            if (thread == null)
-            {
-                thread = new Thread(this.Run);
-                //thread.IsBackground = true;
-                thread.Name = "searcher";
-                thread.Start();
-                MessageBox.Show(thread.ThreadState.ToString());
-                return;
-            }
-            else if(!thread.IsAlive)
-            {
-                thread.Join();
-                MessageBox.Show(thread.ThreadState.ToString());
-            }
-
+            this.DefaultPath = path;
+            this.FileName = fileName;
+            searcher.Path = path;
+            searcher.FileName = fileName;
             searcher.Start();
             this.Run();
         }
@@ -69,13 +69,6 @@ namespace SearcherOfFiles.Managers
             {
                 return;
             }
-
-            if (thread == null)
-            {
-                return;
-            }
-            thread.Join();
-            MessageBox.Show(thread.ThreadState.ToString());
             searcher.Pause();
         }
 
@@ -85,28 +78,24 @@ namespace SearcherOfFiles.Managers
             {
                 return;
             }
-            if (!thread.IsAlive)
-            {
-                MessageBox.Show(thread.ThreadState.ToString());
-                return;
-            }
-            thread.Abort();
-            MessageBox.Show(thread.ThreadState.ToString());
             searcher.Stop();
         }
-
-        public void SetPuth(string path)
+        
+        public void SaveParameters() 
         {
-            if (searcher == null)
-            {
-                return;
-            }
-            searcher.Path = path;
+            Element element = new Element();
+            element.DirectoryPath = this.DefaultPath;
+            element.FileName = this.FileName;
+            List<Element> list = new List<Element>();
+            list.Add(element);
+            Serializer.Serialize(list, configFile);
         }
 
-        public void SetFindFileName(string filename)
+        public void LoadParameters() 
         {
-            searcher.FileName = filename;
+            var element = Serializer.Deserialize(configFile).ElementAt(0);
+            this.DefaultPath = element.DirectoryPath;
+            this.FileName = element.FileName;
         }
     }
 }
