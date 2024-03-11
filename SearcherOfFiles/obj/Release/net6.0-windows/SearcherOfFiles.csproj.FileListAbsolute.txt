@@ -1,0 +1,17 @@
+D:\Project C#\SearcherOfFiles\SearcherOfFiles\bin\Release\net6.0-windows\SearcherOfFiles.exe
+D:\Project C#\SearcherOfFiles\SearcherOfFiles\bin\Release\net6.0-windows\SearcherOfFiles.deps.json
+D:\Project C#\SearcherOfFiles\SearcherOfFiles\bin\Release\net6.0-windows\SearcherOfFiles.runtimeconfig.json
+D:\Project C#\SearcherOfFiles\SearcherOfFiles\bin\Release\net6.0-windows\SearcherOfFiles.dll
+D:\Project C#\SearcherOfFiles\SearcherOfFiles\bin\Release\net6.0-windows\SearcherOfFiles.pdb
+D:\Project C#\SearcherOfFiles\SearcherOfFiles\obj\Release\net6.0-windows\SearcherOfFiles.csproj.AssemblyReference.cache
+D:\Project C#\SearcherOfFiles\SearcherOfFiles\obj\Release\net6.0-windows\SearcherOfFiles.Form1.resources
+D:\Project C#\SearcherOfFiles\SearcherOfFiles\obj\Release\net6.0-windows\SearcherOfFiles.csproj.GenerateResource.cache
+D:\Project C#\SearcherOfFiles\SearcherOfFiles\obj\Release\net6.0-windows\SearcherOfFiles.GeneratedMSBuildEditorConfig.editorconfig
+D:\Project C#\SearcherOfFiles\SearcherOfFiles\obj\Release\net6.0-windows\SearcherOfFiles.AssemblyInfoInputs.cache
+D:\Project C#\SearcherOfFiles\SearcherOfFiles\obj\Release\net6.0-windows\SearcherOfFiles.AssemblyInfo.cs
+D:\Project C#\SearcherOfFiles\SearcherOfFiles\obj\Release\net6.0-windows\SearcherOfFiles.csproj.CoreCompileInputs.cache
+D:\Project C#\SearcherOfFiles\SearcherOfFiles\obj\Release\net6.0-windows\SearcherOfFiles.dll
+D:\Project C#\SearcherOfFiles\SearcherOfFiles\obj\Release\net6.0-windows\refint\SearcherOfFiles.dll
+D:\Project C#\SearcherOfFiles\SearcherOfFiles\obj\Release\net6.0-windows\SearcherOfFiles.pdb
+D:\Project C#\SearcherOfFiles\SearcherOfFiles\obj\Release\net6.0-windows\SearcherOfFiles.genruntimeconfig.cache
+D:\Project C#\SearcherOfFiles\SearcherOfFiles\obj\Release\net6.0-windows\ref\SearcherOfFiles.dll

@@ -1,6 +1,8 @@
-﻿namespace SearcherOfFiles
+﻿using SearcherOfFiles.Components;
+
+namespace SearcherOfFiles
 {
-    partial class Form1
+    partial class FormMain
     {
         /// <summary>
         ///  Required designer variable.
@@ -31,13 +33,13 @@
             btnSearch = new Button();
             btnPause = new Button();
             btnStop = new Button();
-            tBPath = new TextBox();
+            tbPath = new TextBox();
             label1 = new Label();
             label2 = new Label();
-            tBFileName = new TextBox();
-            tBResult = new TextBox();
-            lBResult = new ListBox();
-            tV = new TreeView();
+            tbSearchPattern = new TextBox();
+            tvMain = new TreeViewExt();
+            btnOpen = new Button();
+            lbProgress = new Label();
             SuspendLayout();
             // 
             // btnSearch
@@ -52,6 +54,7 @@
             // 
             // btnPause
             // 
+            btnPause.Enabled = false;
             btnPause.Location = new Point(680, 47);
             btnPause.Name = "btnPause";
             btnPause.Size = new Size(108, 29);
@@ -62,6 +65,7 @@
             // 
             // btnStop
             // 
+            btnStop.Enabled = false;
             btnStop.Location = new Point(680, 82);
             btnStop.Name = "btnStop";
             btnStop.Size = new Size(108, 29);
@@ -70,12 +74,13 @@
             btnStop.UseVisualStyleBackColor = true;
             btnStop.Click += btnStop_Click;
             // 
-            // tBPath
+            // tbPath
             // 
-            tBPath.Location = new Point(337, 14);
-            tBPath.Name = "tBPath";
-            tBPath.Size = new Size(328, 27);
-            tBPath.TabIndex = 3;
+            tbPath.Location = new Point(337, 14);
+            tbPath.Name = "tbPath";
+            tbPath.Size = new Size(284, 27);
+            tbPath.TabIndex = 3;
+            tbPath.Leave += tbPath_Leave;
             // 
             // label1
             // 
@@ -95,59 +100,58 @@
             label2.TabIndex = 6;
             label2.Text = "Файл:";
             // 
-            // tBFileName
+            // tbSearchPattern
             // 
-            tBFileName.Location = new Point(337, 49);
-            tBFileName.Name = "tBFileName";
-            tBFileName.Size = new Size(328, 27);
-            tBFileName.TabIndex = 5;
-            // 
-            // tBResult
-            // 
-            tBResult.AcceptsReturn = true;
-            tBResult.Location = new Point(283, 149);
-            tBResult.Multiline = true;
-            tBResult.Name = "tBResult";
-            tBResult.ScrollBars = ScrollBars.Vertical;
-            tBResult.Size = new Size(159, 104);
-            tBResult.TabIndex = 7;
-            // 
-            // lBResult
-            // 
-            lBResult.FormattingEnabled = true;
-            lBResult.ItemHeight = 20;
-            lBResult.Location = new Point(108, 149);
-            lBResult.Name = "lBResult";
-            lBResult.Size = new Size(150, 104);
-            lBResult.TabIndex = 8;
+            tbSearchPattern.Location = new Point(337, 49);
+            tbSearchPattern.Name = "tbSearchPattern";
+            tbSearchPattern.Size = new Size(328, 27);
+            tbSearchPattern.TabIndex = 5;
+            tbSearchPattern.Leave += tbSearchPattern_Leave;
             // 
             // tV
             // 
-            tV.Location = new Point(109, 284);
-            tV.Name = "tV";
-            tV.Size = new Size(151, 121);
-            tV.TabIndex = 9;
-            tV.AfterSelect += tV_AfterSelect;
+            tvMain.Location = new Point(12, 192);
+            tvMain.Name = "tV";
+            tvMain.Size = new Size(653, 246);
+            tvMain.TabIndex = 9;
             // 
-            // Form1
+            // btnOpen
+            // 
+            btnOpen.Location = new Point(624, 13);
+            btnOpen.Name = "btnOpen";
+            btnOpen.Size = new Size(41, 29);
+            btnOpen.TabIndex = 10;
+            btnOpen.Text = "...";
+            btnOpen.UseVisualStyleBackColor = true;
+            btnOpen.Click += btnOpen_Click;
+            // 
+            // lbProgress
+            // 
+            lbProgress.Location = new Point(12, 91);
+            lbProgress.Name = "lbProgress";
+            lbProgress.Size = new Size(653, 89);
+            lbProgress.TabIndex = 11;
+            // 
+            // FormMain
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
-            Controls.Add(tV);
-            Controls.Add(lBResult);
-            Controls.Add(tBResult);
+            Controls.Add(lbProgress);
+            Controls.Add(btnOpen);
+            Controls.Add(tvMain);
             Controls.Add(label2);
-            Controls.Add(tBFileName);
+            Controls.Add(tbSearchPattern);
             Controls.Add(label1);
-            Controls.Add(tBPath);
+            Controls.Add(tbPath);
             Controls.Add(btnStop);
             Controls.Add(btnPause);
             Controls.Add(btnSearch);
-            Name = "Form1";
+            Name = "FormMain";
             Text = "Searcher";
-            FormClosed += Form1_FormClosed;
-            Load += Form1_Load;
+            FormClosing += FormMain_FormClosing;
+            FormClosed += FormMain_FormClosed;
+            Load += FormMain_Load;
             ResumeLayout(false);
             PerformLayout();
         }
@@ -157,12 +161,12 @@
         private Button btnSearch;
         private Button btnPause;
         private Button btnStop;
-        private TextBox tBPath;
+        private TextBox tbPath;
         private Label label1;
         private Label label2;
-        private TextBox tBFileName;
-        private TextBox tBResult;
-        private ListBox lBResult;
-        private TreeView tV;
+        private TextBox tbSearchPattern;
+        private TreeViewExt tvMain;
+        private Button btnOpen;
+        private Label lbProgress;
     }
 }
