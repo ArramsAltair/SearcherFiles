@@ -76,16 +76,16 @@ namespace SearcherOfFiles
             // 
             // tbPath
             // 
-            tbPath.Location = new Point(337, 14);
+            tbPath.Location = new Point(62, 12);
             tbPath.Name = "tbPath";
-            tbPath.Size = new Size(284, 27);
+            tbPath.Size = new Size(565, 27);
             tbPath.TabIndex = 3;
             tbPath.Leave += tbPath_Leave;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(283, 17);
+            label1.Location = new Point(12, 12);
             label1.Name = "label1";
             label1.Size = new Size(44, 20);
             label1.TabIndex = 4;
@@ -94,7 +94,7 @@ namespace SearcherOfFiles
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(283, 52);
+            label2.Location = new Point(12, 47);
             label2.Name = "label2";
             label2.Size = new Size(48, 20);
             label2.TabIndex = 6;
@@ -102,22 +102,22 @@ namespace SearcherOfFiles
             // 
             // tbSearchPattern
             // 
-            tbSearchPattern.Location = new Point(337, 49);
+            tbSearchPattern.Location = new Point(62, 47);
             tbSearchPattern.Name = "tbSearchPattern";
-            tbSearchPattern.Size = new Size(328, 27);
+            tbSearchPattern.Size = new Size(609, 27);
             tbSearchPattern.TabIndex = 5;
             tbSearchPattern.Leave += tbSearchPattern_Leave;
             // 
-            // tV
+            // tvMain
             // 
             tvMain.Location = new Point(12, 192);
-            tvMain.Name = "tV";
-            tvMain.Size = new Size(653, 246);
+            tvMain.Name = "tvMain";
+            tvMain.Size = new Size(776, 246);
             tvMain.TabIndex = 9;
             // 
             // btnOpen
             // 
-            btnOpen.Location = new Point(624, 13);
+            btnOpen.Location = new Point(633, 12);
             btnOpen.Name = "btnOpen";
             btnOpen.Size = new Size(41, 29);
             btnOpen.TabIndex = 10;
@@ -148,6 +148,7 @@ namespace SearcherOfFiles
             Controls.Add(btnPause);
             Controls.Add(btnSearch);
             Name = "FormMain";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Searcher";
             FormClosing += FormMain_FormClosing;
             FormClosed += FormMain_FormClosed;

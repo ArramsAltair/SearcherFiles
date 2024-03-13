@@ -43,6 +43,11 @@ namespace SearcherOfFiles
             searchManager.Stop();
         }
 
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="newSearch"></param>
         private void SearchManager_Start(bool newSearch)
         {
             if (InvokeRequired)
@@ -55,11 +60,19 @@ namespace SearcherOfFiles
                 tvMain.Nodes.Clear();
             }
 
+            tbPath.Enabled = false;
+            tbSearchPattern.Enabled = false;
+
+            btnOpen.Enabled = false;
             btnSearch.Enabled = false;
-            btnPause.Enabled  = true;
-            btnStop.Enabled   = true;
+            btnPause.Enabled = true;
+            btnStop.Enabled = true;
         }
 
+
+        /// <summary>
+        /// 
+        /// </summary>
         private void SearchManager_Pause()
         {
             if (InvokeRequired)
@@ -71,6 +84,10 @@ namespace SearcherOfFiles
             btnPause.Enabled = false;
         }
 
+
+        /// <summary>
+        /// 
+        /// </summary>
         public void SearchManager_Stop()
         {
             if (InvokeRequired)
@@ -78,11 +95,20 @@ namespace SearcherOfFiles
                 this.Invoke(new Action(SearchManager_Stop));
             }
 
+            tbPath.Enabled = true;
+            tbSearchPattern.Enabled = true;
+
+            btnOpen.Enabled = true;
             btnSearch.Enabled = true;
             btnPause.Enabled = false;
             btnStop.Enabled = false;
         }
 
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="file"></param>
         private void SearchManager_Searched(FileInfo file)
         {
             if (InvokeRequired)
@@ -90,28 +116,48 @@ namespace SearcherOfFiles
                 this.Invoke(new Action<FileInfo>(SearchManager_Searched), new object[] { file });
             }
 
-            TreeNode node = GetNode(file.Directory);
-
-            node.Nodes.Add(file.Name);
+            try
+            {
+                TreeNode node = GetNode(file.Directory);
+                node.Nodes.Add(file.Name);
+            }
+            catch
+            {
+                this.Invoke(new Action<FileInfo>(SearchManager_Searched), new object[] { file });
+            }
         }
 
-        private void SearchManager_Progress(string currentDir, int totalCount, int searchCount)
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="currentDir"></param>
+        /// <param name="totalCount"></param>
+        /// <param name="searchCount"></param>
+        /// <param name="timeCount"></param>
+        private void SearchManager_Progress(string currentDir, int totalCount, int searchCount, TimeSpan timeCount)
         {
             if (InvokeRequired)
             {
-                this.Invoke(new Action<string, int, int>(SearchManager_Progress), new object[] { currentDir, totalCount, searchCount });
+                this.Invoke(new Action<string, int, int, TimeSpan>(SearchManager_Progress), new object[] { currentDir, totalCount, searchCount, timeCount });
             }
-
-            lbProgress.Text = $"Обработано: {totalCount}\nНайдено: {searchCount}\nПапка: {currentDir}";
+            string elapsedTime = String.Format("{0:00}:{1:00}:{2:00}", timeCount.Hours, timeCount.Minutes, timeCount.Seconds);
+            lbProgress.Text = $"Обработано: {totalCount}\nНайдено: {searchCount}\nВремя: {elapsedTime}\nПапка: {currentDir}";
         }
 
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void FormMain_Load(object sender, EventArgs e)
         {
             _settings = ObjectHelper.Deserialize<AppSettings>(SettingPath) ?? new AppSettings();
 
             searchManager = new Searcher(_settings);
 
-            searchManager.OnStart += SearchManager_Start;            
+            searchManager.OnStart += SearchManager_Start;
             searchManager.OnPause += SearchManager_Pause;
             searchManager.OnStop += SearchManager_Stop;
 
@@ -122,6 +168,12 @@ namespace SearcherOfFiles
             tbSearchPattern.Text = _settings.SearchPattern;
         }
 
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void FormMain_FormClosed(object sender, FormClosedEventArgs e)
         {
             searchManager.Stop();
@@ -129,6 +181,12 @@ namespace SearcherOfFiles
             ObjectHelper.Serialize(_settings, SettingPath);
         }
 
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void FormMain_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (MessageBox.Show("Программа будет закрыта!\nПродолжить?", "Предупреждение", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
@@ -137,6 +195,12 @@ namespace SearcherOfFiles
             }
         }
 
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnOpen_Click(object sender, EventArgs e)
         {
             using (FolderBrowserDialog dialog = new FolderBrowserDialog())
@@ -152,18 +216,36 @@ namespace SearcherOfFiles
             }
         }
 
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void tbPath_Leave(object sender, EventArgs e)
         {
             _settings.DefaultPath = tbPath.Text;
             tbSearchPattern.Text = _settings.SearchPattern;
         }
 
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void tbSearchPattern_Leave(object sender, EventArgs e)
         {
             _settings.SearchPattern = tbSearchPattern.Text;
             tbSearchPattern.Text = _settings.SearchPattern;
         }
 
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="dir"></param>
+        /// <returns></returns>
         private TreeNode? GetNode(DirectoryInfo dir)
         {
             if (dir == null)
@@ -171,19 +253,26 @@ namespace SearcherOfFiles
                 return null;
             }
 
-            TreeNode paeent = GetNode(dir.Parent);
+            TreeNode parent = GetNode(dir.Parent);
 
-            if (paeent == null)
+            if (parent == null)
             {
                 return FindNode(tvMain.Nodes, dir);
             }
 
-            return FindNode(paeent.Nodes, dir);
+            return FindNode(parent.Nodes, dir);
         }
 
-        private TreeNode FindNode(TreeNodeCollection nodes, DirectoryInfo dir)
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="nodes"></param>
+        /// <param name="dir"></param>
+        /// <returns></returns>
+        private TreeNode FindNode(TreeNodeCollection? nodes, DirectoryInfo dir)
         {
-            TreeNode node = nodes.Cast<TreeNode>().FirstOrDefault(w => w.Text == dir.Name);
+            TreeNode? node = nodes.Cast<TreeNode>().FirstOrDefault(w => w.Text == dir.Name);
 
             if (node == null)
             {
