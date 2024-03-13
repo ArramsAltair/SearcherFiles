@@ -6,17 +6,29 @@ namespace SearcherOfFiles
 {
     public partial class FormMain : Form
     {
-        private AppSettings _settings;
+        #region private
 
         private string SettingPath => ConfigurationManager.AppSettings["SettingPath"] ?? "";
 
-        Searcher searchManager;
+        private AppSettings _settings;
 
+        private Searcher searchManager;
+
+        #endregion
+
+        /// <summary>
+        /// Конструктор FormMain
+        /// </summary>
         public FormMain()
         {
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Реализация метода SearchManager_RunSearch
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void SearchManager_RunSearch(object? sender, EventArgs e)
         {
             if (InvokeRequired)
@@ -28,16 +40,31 @@ namespace SearcherOfFiles
             }
         }
 
+        /// <summary>
+        /// Реализация метода btnSearch_Click
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnSearch_Click(object sender, EventArgs e)
         {
             searchManager.Start();
         }
 
+        /// <summary>
+        /// Реализация метода btnSearch_Click
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnPause_Click(object sender, EventArgs e)
         {
             searchManager.Pause();
         }
 
+        /// <summary>
+        /// Реализация метода btnStop_Click
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnStop_Click(object sender, EventArgs e)
         {
             searchManager.Stop();
@@ -45,7 +72,7 @@ namespace SearcherOfFiles
 
 
         /// <summary>
-        /// 
+        /// Реализация метода SearchManager_Start
         /// </summary>
         /// <param name="newSearch"></param>
         private void SearchManager_Start(bool newSearch)
@@ -71,7 +98,7 @@ namespace SearcherOfFiles
 
 
         /// <summary>
-        /// 
+        /// Реализация метода SearchManager_Pause
         /// </summary>
         private void SearchManager_Pause()
         {
@@ -86,7 +113,7 @@ namespace SearcherOfFiles
 
 
         /// <summary>
-        /// 
+        /// Реализация метода SearchManager_Stop
         /// </summary>
         public void SearchManager_Stop()
         {
@@ -106,7 +133,7 @@ namespace SearcherOfFiles
 
 
         /// <summary>
-        /// 
+        /// Реализация метода SearchManager_Searched
         /// </summary>
         /// <param name="file"></param>
         private void SearchManager_Searched(FileInfo file)
@@ -129,7 +156,7 @@ namespace SearcherOfFiles
 
 
         /// <summary>
-        /// 
+        /// Реализация метода SearchManager_Progress
         /// </summary>
         /// <param name="currentDir"></param>
         /// <param name="totalCount"></param>
@@ -147,7 +174,7 @@ namespace SearcherOfFiles
 
 
         /// <summary>
-        /// 
+        /// Реализация метода FormMain_Load
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -170,7 +197,7 @@ namespace SearcherOfFiles
 
 
         /// <summary>
-        /// 
+        /// Реализация метода FormMain_FormClosed
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -183,7 +210,7 @@ namespace SearcherOfFiles
 
 
         /// <summary>
-        /// 
+        /// Реализация метода FormMain_FormClosing
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -197,7 +224,7 @@ namespace SearcherOfFiles
 
 
         /// <summary>
-        /// 
+        /// Реализация метода btnOpen_Click
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -218,7 +245,7 @@ namespace SearcherOfFiles
 
 
         /// <summary>
-        /// 
+        /// Реализация метода tbPath_Leave
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -229,8 +256,8 @@ namespace SearcherOfFiles
         }
 
 
-        /// <summary>
-        /// 
+        /// <summary> 
+        /// Реализация метода tbSearchPattern_Leave
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -242,7 +269,7 @@ namespace SearcherOfFiles
 
 
         /// <summary>
-        /// 
+        /// Реализация метода GetNode
         /// </summary>
         /// <param name="dir"></param>
         /// <returns></returns>
@@ -265,7 +292,7 @@ namespace SearcherOfFiles
 
 
         /// <summary>
-        /// 
+        /// Реализация метода FindNode
         /// </summary>
         /// <param name="nodes"></param>
         /// <param name="dir"></param>
