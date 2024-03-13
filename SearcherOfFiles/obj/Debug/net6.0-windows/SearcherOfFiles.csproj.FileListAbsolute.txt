@@ -1,5 +1,4 @@
 D:\Project C#\SearcherOfFiles\SearcherOfFiles\obj\Debug\net6.0-windows\SearcherOfFiles.csproj.AssemblyReference.cache
-D:\Project C#\SearcherOfFiles\SearcherOfFiles\obj\Debug\net6.0-windows\SearcherOfFiles.Form1.resources
 D:\Project C#\SearcherOfFiles\SearcherOfFiles\obj\Debug\net6.0-windows\SearcherOfFiles.csproj.GenerateResource.cache
 D:\Project C#\SearcherOfFiles\SearcherOfFiles\obj\Debug\net6.0-windows\SearcherOfFiles.GeneratedMSBuildEditorConfig.editorconfig
 D:\Project C#\SearcherOfFiles\SearcherOfFiles\obj\Debug\net6.0-windows\SearcherOfFiles.AssemblyInfoInputs.cache
@@ -15,3 +14,5 @@ D:\Project C#\SearcherOfFiles\SearcherOfFiles\obj\Debug\net6.0-windows\refint\Se
 D:\Project C#\SearcherOfFiles\SearcherOfFiles\obj\Debug\net6.0-windows\SearcherOfFiles.pdb
 D:\Project C#\SearcherOfFiles\SearcherOfFiles\obj\Debug\net6.0-windows\SearcherOfFiles.genruntimeconfig.cache
 D:\Project C#\SearcherOfFiles\SearcherOfFiles\obj\Debug\net6.0-windows\ref\SearcherOfFiles.dll
+D:\Project C#\SearcherOfFiles\SearcherOfFiles\bin\Debug\net6.0-windows\SearcherOfFiles.dll.config
+D:\Project C#\SearcherOfFiles\SearcherOfFiles\obj\Debug\net6.0-windows\SearcherOfFiles.FormMain.resources
