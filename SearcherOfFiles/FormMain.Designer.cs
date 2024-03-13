@@ -34,8 +34,8 @@ namespace SearcherOfFiles
             btnPause = new Button();
             btnStop = new Button();
             tbPath = new TextBox();
-            label1 = new Label();
-            label2 = new Label();
+            lbPath = new Label();
+            lbFile = new Label();
             tbSearchPattern = new TextBox();
             tvMain = new TreeViewExt();
             btnOpen = new Button();
@@ -82,23 +82,23 @@ namespace SearcherOfFiles
             tbPath.TabIndex = 3;
             tbPath.Leave += tbPath_Leave;
             // 
-            // label1
+            // lbPath
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(12, 12);
-            label1.Name = "label1";
-            label1.Size = new Size(44, 20);
-            label1.TabIndex = 4;
-            label1.Text = "Путь:";
+            lbPath.AutoSize = true;
+            lbPath.Location = new Point(12, 12);
+            lbPath.Name = "lbPath";
+            lbPath.Size = new Size(44, 20);
+            lbPath.TabIndex = 4;
+            lbPath.Text = "Путь:";
             // 
-            // label2
+            // lbFile
             // 
-            label2.AutoSize = true;
-            label2.Location = new Point(12, 47);
-            label2.Name = "label2";
-            label2.Size = new Size(48, 20);
-            label2.TabIndex = 6;
-            label2.Text = "Файл:";
+            lbFile.AutoSize = true;
+            lbFile.Location = new Point(12, 47);
+            lbFile.Name = "lbFile";
+            lbFile.Size = new Size(48, 20);
+            lbFile.TabIndex = 6;
+            lbFile.Text = "Файл:";
             // 
             // tbSearchPattern
             // 
@@ -140,9 +140,9 @@ namespace SearcherOfFiles
             Controls.Add(lbProgress);
             Controls.Add(btnOpen);
             Controls.Add(tvMain);
-            Controls.Add(label2);
+            Controls.Add(lbFile);
             Controls.Add(tbSearchPattern);
-            Controls.Add(label1);
+            Controls.Add(lbPath);
             Controls.Add(tbPath);
             Controls.Add(btnStop);
             Controls.Add(btnPause);
@@ -163,8 +163,8 @@ namespace SearcherOfFiles
         private Button btnPause;
         private Button btnStop;
         private TextBox tbPath;
-        private Label label1;
-        private Label label2;
+        private Label lbPath;
+        private Label lbFile;
         private TextBox tbSearchPattern;
         private TreeViewExt tvMain;
         private Button btnOpen;
