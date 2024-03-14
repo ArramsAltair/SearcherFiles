@@ -138,20 +138,15 @@ namespace SearcherOfFiles
         /// <param name="file"></param>
         private void SearchManager_Searched(FileInfo file)
         {
-            if (InvokeRequired)
+            if (this.InvokeRequired)
             {
                 this.Invoke(new Action<FileInfo>(SearchManager_Searched), new object[] { file });
+                return;
             }
 
-            try
-            {
-                TreeNode node = GetNode(file.Directory);
-                node.Nodes.Add(file.Name);
-            }
-            catch
-            {
-                this.Invoke(new Action<FileInfo>(SearchManager_Searched), new object[] { file });
-            }
+            TreeNode node = GetNode(file.Directory);
+            node.Nodes.Add(file.Name);          
+
         }
 
 
@@ -299,7 +294,11 @@ namespace SearcherOfFiles
         /// <returns></returns>
         private TreeNode FindNode(TreeNodeCollection? nodes, DirectoryInfo dir)
         {
-            TreeNode? node = nodes.Cast<TreeNode>().FirstOrDefault(w => w.Text == dir.Name);
+            if (nodes == null)
+            {
+                return null;
+            }
+            TreeNode? node = nodes.Cast<TreeNode>().FirstOrDefault(w => w.Text.Equals(dir.Name, StringComparison.Ordinal));
 
             if (node == null)
             {

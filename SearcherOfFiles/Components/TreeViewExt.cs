@@ -7,7 +7,7 @@
     {
         public TreeViewExt()
         {
-            SetStyle(ControlStyles.UserPaint |  ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer, true);
+            SetStyle(ControlStyles.UserPaint | ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer, true);
         }
 
         /// <summary>
