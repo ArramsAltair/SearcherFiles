@@ -40,6 +40,7 @@ namespace SearcherOfFiles
             tvMain = new TreeViewExt();
             btnOpen = new Button();
             lbProgress = new Label();
+            textBox1 = new TextBox();
             SuspendLayout();
             // 
             // btnSearch
@@ -132,11 +133,21 @@ namespace SearcherOfFiles
             lbProgress.Size = new Size(653, 89);
             lbProgress.TabIndex = 11;
             // 
+            // textBox1
+            // 
+            textBox1.Location = new Point(12, 444);
+            textBox1.Multiline = true;
+            textBox1.Name = "textBox1";
+            textBox1.ScrollBars = ScrollBars.Vertical;
+            textBox1.Size = new Size(776, 58);
+            textBox1.TabIndex = 12;
+            // 
             // FormMain
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(800, 548);
+            Controls.Add(textBox1);
             Controls.Add(lbProgress);
             Controls.Add(btnOpen);
             Controls.Add(tvMain);
@@ -169,5 +180,6 @@ namespace SearcherOfFiles
         private TreeViewExt tvMain;
         private Button btnOpen;
         private Label lbProgress;
+        private TextBox textBox1;
     }
 }

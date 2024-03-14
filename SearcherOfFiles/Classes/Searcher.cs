@@ -49,7 +49,6 @@ namespace SearcherOfFiles.Classes
             _setting = setting;
         }
 
-
         /// <summary>
         /// Реализация метода Start
         /// </summary>
@@ -67,6 +66,7 @@ namespace SearcherOfFiles.Classes
                 _stopwatch.Restart();
 
                 _thread = new Thread(DoSearch);
+                _thread.IsBackground = true;
                 _thread.Start();
 
                 OnStart?.Invoke(true);
@@ -80,19 +80,19 @@ namespace SearcherOfFiles.Classes
             _manualResetEvent.Set();
         }
 
-
         /// <summary>
         /// Релизация метода Pause
         /// </summary>
         public void Pause()
         {
             _onStop = false;
+
             _manualResetEvent.Reset();
+
             _stopwatch.Stop();
 
             OnPause?.Invoke();
         }
-
 
         /// <summary>
         /// Реализация метода Stop
@@ -111,7 +111,6 @@ namespace SearcherOfFiles.Classes
 
             OnStop?.Invoke();
         }
-
 
         /// <summary>
         /// Реализация метода DoSearch
@@ -134,7 +133,6 @@ namespace SearcherOfFiles.Classes
                 OnStop?.Invoke();
             }
         }
-
 
         /// <summary>
         /// Реализация метода ScanFolder
@@ -162,6 +160,7 @@ namespace SearcherOfFiles.Classes
                 }
                 catch (Exception ex) 
                 {
+                    
                 }
             }
 
